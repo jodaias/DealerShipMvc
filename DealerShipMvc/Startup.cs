@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using KissLog.AspNetCore;
+using DealerShipMvc.Extensions;
 
 namespace DealerShipMvc
 {
@@ -43,7 +44,10 @@ namespace DealerShipMvc
 
             services.AddRazorPages();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddMvc(options=>
+            {
+                options.Filters.Add(typeof(AuditFilter));
+            }).SetCompatibilityVersion(CompatibilityVersion.Latest);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

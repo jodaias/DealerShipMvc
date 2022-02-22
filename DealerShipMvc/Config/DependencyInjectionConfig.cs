@@ -17,6 +17,7 @@ namespace DealerShipMvc.Config
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IKLogger>(provider => Logger.Factory.Get());
+            services.AddScoped<AuditFilter>();
 
             services.AddLogging(logging =>
             {
